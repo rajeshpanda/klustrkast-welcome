@@ -74,8 +74,7 @@ a{color:inherit}
 .note b{color:var(--fg);font-weight:600}
 
 /* Supported bikes */
-.bikes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px}
-@media (max-width:560px){.bikes{grid-template-columns:1fr}}
+.bikes{display:grid;grid-template-columns:minmax(0,520px);gap:16px;margin-top:26px}
 .bike{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
 .bike .tag{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
 .bike.ok .tag{color:#1f9d57}
@@ -179,11 +178,6 @@ footer a{color:var(--muted)}
         <div class="tag">Fully supported</div>
         <h3>TVS Apache RTX 300 — Top / BTO</h3>
         <p>Every feature works: map mirroring, turn‑by‑turn, music, calls and ride tracking.</p>
-      </div>
-      <div class="bike soon">
-        <div class="tag">Coming</div>
-        <h3>More TVS clusters</h3>
-        <p>Built on a shared protocol, so new models slot in. Tell us what you ride in the form.</p>
       </div>
     </div>
   </div>
