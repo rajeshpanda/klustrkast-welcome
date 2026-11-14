@@ -66,6 +66,14 @@ a{color:inherit}
 .speed b{font-size:26px}.speed span{font-size:11px;color:#9aa2ab;font-weight:500}
 .cluster .cap{color:var(--on-hero-muted);font-size:12px;text-align:center;margin-top:12px}
 
+/* Highlights strip */
+.highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:4px}
+@media (max-width:720px){.highlights{grid-template-columns:1fr}}
+.hl{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.hl .ic{width:22px;height:22px;color:var(--accent)}
+.hl b{font-family:var(--font-head);font-size:15px}
+.hl span{font-size:13px;color:var(--muted)}
+
 /* Generic section */
 .section{padding-block:54px}
 .section h2{font-size:clamp(24px,3.6vw,32px)}
@@ -130,7 +138,7 @@ footer a{color:var(--muted)}
 <div class="band">
   <div class="wrap top">
     <div class="brand"><b>KlustrKast</b><span>Companion app for the TVS&nbsp;Apache&nbsp;RTX</span></div>
-    <span class="pill">Private beta</span>
+    <span class="pill">Private beta · v1.3.2</span>
   </div>
 </div>
 
@@ -140,12 +148,12 @@ footer a{color:var(--muted)}
       <div>
         <div class="eyebrow">For Apache RTX riders</div>
         <h1>Seamless map navigation, on your RTX cluster.</h1>
-        <p class="sub">KlustrKast pairs with your Apache RTX over Bluetooth and Wi‑Fi and puts a live map on your dashboard — turn‑by‑turn and lanes, music and calls, and every ride recorded.</p>
+        <p class="sub">KlustrKast pairs with your Apache RTX over Bluetooth and Wi‑Fi and puts a live map on your dashboard — so you can lock your phone, pocket it, and still ride with turn‑by‑turn, music and calls.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Join →</a>
           <a class="btn btn-ghost" href="#features">See features</a>
         </div>
-        <div class="reassure">Free during the beta · Android · invite by email</div>
+        <div class="reassure">Android · invite by email</div>
       </div>
 
       <div class="cluster">
@@ -164,6 +172,28 @@ footer a{color:var(--muted)}
           <div class="speed"><b>62</b><br><span>km/h</span></div>
         </div>
         <div class="cap">The live map, mirrored to your RTX dashboard</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap" style="padding-block:6px 10px">
+    <div class="highlights">
+      <div class="hl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <b>Lock your phone and ride</b>
+        <span>Navigate with the screen off — turns show on your cluster and in your ear.</span>
+      </div>
+      <div class="hl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+        <b>Connects in under 10 seconds</b>
+        <span>Hop on and go — the cluster links up fast over Bluetooth and Wi‑Fi.</span>
+      </div>
+      <div class="hl">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0"/><path d="M5 12a11 11 0 0 1 14 0"/><path d="M8.5 15.5a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><path d="M3 3 21 21"/></svg>
+        <b>No signal needed</b>
+        <span>Cached maps keep the cluster map live through dead zones.</span>
       </div>
     </div>
   </div>
@@ -255,7 +285,6 @@ footer a{color:var(--muted)}
   <div class="wrap section">
     <h2>Questions, answered</h2>
     <div class="faq">
-      <details><summary>Is KlustrKast free?</summary><p>Yes — it's free during the private beta.</p></details>
       <details><summary>Which bikes does it work with?</summary><p>Today, the TVS Apache RTX 300 (Top / BTO), which is fully supported. It's built on a shared cluster protocol, so more models can be added — tell us what you ride in the form.</p></details>
       <details><summary>Do I need any API keys?</summary><p>For the best maps and routing, add your own MapTiler and TomTom keys in Settings — both offer free tiers. The app still works without them using open fallbacks; the keys just make maps and ETAs sharper.</p></details>
       <details><summary>Is it made by TVS?</summary><p>No. KlustrKast is an independent project and is not affiliated with, endorsed by, or sponsored by TVS Motor Company.</p></details>
@@ -269,7 +298,7 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <div class="final">
       <h2>Put a map on your RTX dash.</h2>
-      <p>Join the private beta — free while it lasts, invite by email.</p>
+      <p>Join the private beta — invite by email.</p>
       <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Join →</a>
     </div>
   </div>
@@ -279,7 +308,7 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <footer>
       <p>KlustrKast is an independent project, not affiliated with or endorsed by TVS Motor Company. “Apache” and “RTX” are trademarks of their respective owner.</p>
-      <p>KlustrKast · v0.1 · <a href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Join</a></p>
+      <p>KlustrKast · v1.3.2 · <a href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Join</a></p>
     </footer>
   </div>
 </div>
