@@ -3,15 +3,16 @@
 <meta name="description" content="Seamless map navigation on your TVS Apache RTX cluster — turn-by-turn, music and calls on the dash, and every ride recorded.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
+@font-face{font-family:"KKDot";src:url("dotmatrix.ttf") format("truetype");font-display:swap}
 /* Layout: calm single-column landing; full-width bands, centered 1080px content wrap, red accent on CTAs only. */
 :root{
   --bg:#f3f4f6; --surface:#ffffff; --surface-2:#e9ebee; --hero:#14171b;
   --fg:#191c20; --muted:#646a71; --faint:#9298a0; --border:#e3e6e9;
   --accent:#dd3b2e; --accent-ink:#ffffff; --on-hero:#eef0f2; --on-hero-muted:#9aa2ab;
   --radius:16px;
-  --font-head:"DotGothic16","Space Grotesk",system-ui,sans-serif;
+  --font-head:"Space Grotesk",system-ui,sans-serif;
   --font-body:"Inter",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -43,7 +44,7 @@ a{color:inherit}
 /* Header */
 .top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:18px}
 .brand{display:flex;flex-direction:column;line-height:1.2}
-.brand b{font-family:var(--font-head);font-size:19px;font-weight:700}
+.brand b{font-family:"KKDot",var(--font-head);font-size:20px;font-weight:400;text-transform:uppercase;letter-spacing:2px}
 .brand span{font-size:12px;color:var(--muted)}
 .pill{font-size:12px;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:.4em .85em;white-space:nowrap}
 
