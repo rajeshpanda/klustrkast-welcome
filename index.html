@@ -1,7 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>KlustrKast</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Seamless map navigation on your cluster — live maps, music and calls on the dash, and every ride recorded.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KlustrKast — map navigation on your cluster">
+<meta property="og:description" content="Lock your phone and ride: a live map, music and calls on your dash, and every ride recorded.">
+<meta property="og:url" content="https://rajeshpanda.github.io/klustrkast-welcome/">
+<meta name="theme-color" content="#f3f4f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
@@ -15,6 +26,7 @@
   --radius:16px;
   --font-head:"Space Grotesk",system-ui,sans-serif;
   --font-body:"Inter",system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
@@ -29,7 +41,8 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#features{scroll-margin-top:8px}
 .wrap{width:100%;max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-family:var(--font-head);text-wrap:balance;margin:0;letter-spacing:-0.01em}
 a{color:inherit}
@@ -61,7 +74,8 @@ a{color:inherit}
 /* Cluster mock */
 .cluster{background:var(--hero);border-radius:20px;padding:18px;border:1px solid var(--border);box-shadow:0 20px 50px -30px rgba(0,0,0,.5)}
 .cluster .screen{aspect-ratio:16/9;width:100%;border-radius:12px;overflow:hidden;position:relative;background:#101418}
-.cluster svg{position:absolute;inset:0;width:100%;height:100%}
+.cluster .screen>svg{position:absolute;inset:0;width:100%;height:100%}
+.turnchip svg{flex:none}
 .turnchip{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:8px;background:rgba(10,12,14,.72);backdrop-filter:blur(4px);color:#eef0f2;border-radius:10px;padding:7px 11px;font-size:13px;font-weight:600}
 .turnchip small{display:block;font-weight:400;color:#9aa2ab;font-size:11px}
 .speed{position:absolute;right:10px;bottom:10px;color:#eef0f2;font-family:var(--font-head);font-weight:700;text-align:right;line-height:1}
@@ -108,9 +122,9 @@ a{color:inherit}
 @media (max-width:760px){.shots{grid-auto-columns:calc((100% - 16px)/2)}}
 @media (max-width:520px){.shots{grid-auto-columns:82%}}
 .shot{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;scroll-snap-align:start}
-.shot img{display:block;width:100%;height:auto}
+.shot img{display:block;width:100%;height:auto;aspect-ratio:540/1140;object-fit:cover;object-position:top;background:var(--surface-2)}
 .shot .lbl{font-size:12.5px;color:var(--muted);padding:9px 12px;border-top:1px solid var(--border)}
-.cbtn{position:absolute;top:calc(50% - 20px);transform:translateY(-50%);width:42px;height:42px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.14);z-index:2;transition:opacity .2s}
+.cbtn{position:absolute;top:calc(50% - 20px);transform:translateY(-50%);width:42px;height:42px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.14);z-index:2;transition:opacity .2s,transform .2s var(--ease),border-color .2s,color .2s}
 .cbtn:hover{border-color:var(--accent);color:var(--accent)}
 .cbtn.prev{left:-8px}.cbtn.next{right:-8px}
 .cbtn[disabled]{opacity:.32;cursor:default}
@@ -133,8 +147,9 @@ a{color:inherit}
 .faq details{border-bottom:1px solid var(--border)}
 .faq summary{cursor:pointer;list-style:none;padding:16px 2px;font-weight:500;font-size:16px;display:flex;justify-content:space-between;gap:12px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--muted);font-size:20px;line-height:1}
-.faq details[open] summary::after{content:"\2212"}
+.faq summary{transition:color .2s}
+.faq summary::after{content:"+";color:var(--muted);font-size:20px;line-height:1;transition:transform .25s var(--ease),color .2s}
+.faq details[open] summary::after{transform:rotate(45deg);color:var(--accent)}
 .faq p{color:var(--muted);font-size:14.5px;margin:0 2px 16px}
 
 /* Final CTA */
@@ -147,7 +162,51 @@ a{color:inherit}
 footer{padding-block:34px;border-top:1px solid var(--border);margin-top:20px}
 footer p{font-size:12.5px;color:var(--faint);margin:0 0 6px}
 footer a{color:var(--muted)}
+
+/* Motion: short and purposeful; hover lifts, staged hero entrance, scroll reveals, a live cluster mock.
+   Everything is off under prefers-reduced-motion, and content stays visible without JS. */
+.btn{transition:transform .18s var(--ease),box-shadow .2s var(--ease),filter .18s,border-color .18s}
+.btn .arr{display:inline-block;transition:transform .2s var(--ease)}
+.hl,.bike,.shot{transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s}
+.feat .ic{transition:transform .25s var(--ease)}
+@media (hover:hover){
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary:hover{box-shadow:0 12px 24px -12px var(--accent)}
+  .btn:hover .arr{transform:translateX(4px)}
+  .hl:hover,.bike:hover,.shot:hover{transform:translateY(-4px);box-shadow:0 16px 32px -20px rgba(0,0,0,.4);border-color:var(--faint)}
+  .feat .card:hover .ic{transform:translateY(-3px) scale(1.08)}
+  .cbtn:not([disabled]):hover{transform:translateY(-50%) scale(1.08)}
+  .faq summary:hover{color:var(--accent)}
+}
+.btn:active{transform:translateY(0) scale(.97)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.turnchip .i-b,.turnchip.b .i-a{display:none}
+.turnchip.b .i-b{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(10px)}}
+@keyframes fade{from{opacity:0}}
+@keyframes draw{from{stroke-dashoffset:1}}
+@keyframes pulse{from{transform:scale(1);opacity:.55}to{transform:scale(3.4);opacity:0}}
+@keyframes beat{0%,36%,100%{transform:scale(1)}12%{transform:scale(1.25)}24%{transform:scale(.95)}}
+@keyframes faqin{from{opacity:0;transform:translateY(-6px)}}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .top{animation:fade .6s ease backwards}
+  .hero .eyebrow,.hero h1,.hero .sub,.hero .cta-row,.hero .reassure{animation:rise .7s var(--ease) backwards}
+  .hero h1{animation-delay:.08s}.hero .sub{animation-delay:.16s}.hero .cta-row{animation-delay:.24s}.hero .reassure{animation-delay:.32s}
+  .cluster{animation:pop .8s var(--ease) .2s backwards}
+  .route{stroke-dasharray:1;animation:draw 1.5s var(--ease) .6s backwards}
+  .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.9s ease-out infinite}
+  .heart{animation:beat 2.6s ease-in-out infinite}
+  .rv:not(.in){opacity:0}
+  .rv.in{animation:rise .65s var(--ease) backwards;animation-delay:var(--d,0ms)}
+  .step.rv.in .n{animation:pop .5s var(--ease) backwards;animation-delay:calc(var(--d,0ms) + .12s)}
+  .faq details[open] p{animation:faqin .3s var(--ease)}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+</head>
+<body>
 
 <div class="band">
   <div class="wrap top">
@@ -164,7 +223,7 @@ footer a{color:var(--muted)}
         <h1>Seamless map navigation, on your cluster.</h1>
         <p class="sub">KlustrKast pairs with your bike over Bluetooth and Wi‑Fi and puts a live map on your dashboard — so you can lock your phone, pocket it, and still ride with full map navigation, music and calls.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Get the app →</a>
+          <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Get the app <span class="arr" aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#features">See features</a>
         </div>
         <div class="reassure">Android APK (not on Play Store) · no ads, ever · contribution‑based</div>
@@ -174,16 +233,20 @@ footer a{color:var(--muted)}
         <div class="screen">
           <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <rect width="320" height="180" fill="#101418"/>
-            <path d="M-10 150 L120 120 L160 70 L210 60 L340 30" fill="none" stroke="#2a3139" stroke-width="18" stroke-linecap="round"/>
+            <path id="kkRouteBase" d="M-10 150 L120 120 L160 70 L210 60 L340 30" fill="none" stroke="#2a3139" stroke-width="18" stroke-linecap="round"/>
             <path d="M40 200 L90 120 L150 95 L150 -10" fill="none" stroke="#222930" stroke-width="12" stroke-linecap="round"/>
-            <path d="M-10 150 L120 120 L160 70 L210 60 L340 30" fill="none" stroke="#dd3b2e" stroke-width="6" stroke-linecap="round"/>
-            <circle cx="120" cy="120" r="7" fill="#eef0f2" stroke="#dd3b2e" stroke-width="3"/>
+            <path class="route" pathLength="1" d="M-10 150 L120 120 L160 70 L210 60 L340 30" fill="none" stroke="#dd3b2e" stroke-width="6" stroke-linecap="round"/>
+            <g id="kkPuck" transform="translate(75 130)">
+              <circle class="pulse" r="7" fill="#dd3b2e" opacity=".5"/>
+              <circle r="7" fill="#eef0f2" stroke="#dd3b2e" stroke-width="3"/>
+            </g>
           </svg>
-          <div class="turnchip">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dd3b2e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V9a3 3 0 0 1 3-3h6"/><path d="m15 3 4 3-4 3"/></svg>
-            <div>400 m<small>Turn right onto MG Road</small></div>
+          <div class="turnchip" id="kkChip">
+            <svg class="i-a" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dd3b2e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18V9a3 3 0 0 0-3-3H6"/><path d="m9 3-4 3 4 3"/></svg>
+            <svg class="i-b" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dd3b2e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5"/><path d="m6 11 6-6 6 6"/></svg>
+            <div><span id="kkDist">200 m</span><small id="kkInstr">Turn left onto MG Road</small></div>
           </div>
-          <div class="speed"><b>62</b><br><span>km/h</span></div>
+          <div class="speed"><b id="kkSpeed">62</b><br><span>km/h</span></div>
         </div>
         <div class="cap">The live map, mirrored to your RTX dashboard</div>
       </div>
@@ -229,7 +292,7 @@ footer a{color:var(--muted)}
 
 <div class="band" id="features">
   <div class="wrap section">
-    <h2>Why <span style="font-family:'KKDot',var(--font-head);text-transform:uppercase;letter-spacing:2px;font-weight:400">Klustrkast</span>-ers <svg viewBox="0 0 24 24" fill="var(--accent)" role="img" aria-label="love" style="width:0.82em;height:0.82em;vertical-align:-0.07em;margin:0 .03em"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41 .81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg> this</h2>
+    <h2>Why <span style="font-family:'KKDot',var(--font-head);text-transform:uppercase;letter-spacing:2px;font-weight:400">Klustrkast</span>ers <svg class="heart" viewBox="0 0 24 24" fill="var(--accent)" role="img" aria-label="love" style="width:0.82em;height:0.82em;vertical-align:-0.07em;margin:0 .03em"><path d="M12 21.35 10.55 20.03C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41 .81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53L12 21.35Z"/></svg> this</h2>
     <p class="lead">Made by a rider, for riders — every feature thought through, and the ones you'll actually reach for on every ride.</p>
     <div class="feat">
       <div class="card">
@@ -325,7 +388,7 @@ footer a{color:var(--muted)}
     <div class="final">
       <h2>Put a map on your cluster.</h2>
       <p>Access is contribution‑based — it keeps the project going. Sign up and we'll be in touch.</p>
-      <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Get the app →</a>
+      <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Get the app <span class="arr" aria-hidden="true">→</span></a>
     </div>
   </div>
 </div>
@@ -363,4 +426,51 @@ footer a{color:var(--muted)}
   window.addEventListener('resize',sync);
   sync();
 })();
+
+/* Scroll reveals + the live cluster mock. Skipped entirely under prefers-reduced-motion. */
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  var $=function(s){return Array.prototype.slice.call(document.querySelectorAll(s));};
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting||e.boundingClientRect.top<0){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    var mark=function(el,d){el.classList.add('rv');if(d)el.style.setProperty('--d',d+'ms');io.observe(el);};
+    $('.section h2,.section .lead,.bike,.note,.carousel,.cdots,.final').forEach(function(el){mark(el,0);});
+    [['.highlights .hl',90,400],['.feat .card',70,0],['.steps .step',110,0],['.faq details',45,0]].forEach(function(g){
+      $(g[0]).forEach(function(el,i){mark(el,g[2]+i*g[1]);});
+    });
+  }
+
+  var base=document.getElementById('kkRouteBase'),puck=document.getElementById('kkPuck'),box=document.querySelector('.cluster');
+  if(!base||!puck||!box||!base.getTotalLength)return;
+  var chip=document.getElementById('kkChip'),dist=document.getElementById('kkDist'),instr=document.getElementById('kkInstr'),spd=document.getElementById('kkSpeed');
+  var len=base.getTotalLength(),turn=Math.sqrt(130*130+30*30),M=4.2,DUR=12000;
+  var acc=(Math.sqrt(85*85+20*20)/len)*DUR,last=0,on=false,ready=false,vis=true,txtAt=0;
+  function frame(now){
+    if(!on)return;
+    if(last)acc+=Math.min(now-last,100);
+    last=now;
+    var cur=((acc%DUR)/DUR)*len,pt=base.getPointAtLength(cur);
+    puck.setAttribute('transform','translate('+pt.x.toFixed(1)+' '+pt.y.toFixed(1)+')');
+    if(now-txtAt>400){
+      txtAt=now;
+      var after=cur>=turn;
+      chip.classList.toggle('b',after);
+      if(after){dist.textContent=Math.max(.3,1.4-(cur-turn)*M/1000).toFixed(1)+' km';instr.textContent='Continue on MG Road';}
+      else{dist.textContent=Math.max(0,Math.round((turn-cur)*M/10)*10)+' m';instr.textContent='Turn left onto MG Road';}
+      spd.textContent=Math.round(62+4*Math.sin(now/1700)+2*Math.sin(now/530));
+    }
+    requestAnimationFrame(frame);
+  }
+  function start(){if(on||!ready||!vis)return;on=true;last=0;requestAnimationFrame(frame);}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)start();else on=false;}).observe(box);
+  }
+  setTimeout(function(){ready=true;start();},1600);
+})();
 </script>
+</body>
+</html>
