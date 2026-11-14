@@ -3,7 +3,7 @@
 <meta name="description" content="Seamless map navigation on your TVS Apache RTX cluster — turn-by-turn, music and calls on the dash, and every ride recorded.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
 /* Layout: calm single-column landing; full-width bands, centered 1080px content wrap, red accent on CTAs only. */
 :root{
@@ -11,7 +11,7 @@
   --fg:#191c20; --muted:#646a71; --faint:#9298a0; --border:#e3e6e9;
   --accent:#dd3b2e; --accent-ink:#ffffff; --on-hero:#eef0f2; --on-hero-muted:#9aa2ab;
   --radius:16px;
-  --font-head:"Space Grotesk",system-ui,sans-serif;
+  --font-head:"DotGothic16","Space Grotesk",system-ui,sans-serif;
   --font-body:"Inter",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -91,8 +91,7 @@ a{color:inherit}
 .bike p{font-size:14px;color:var(--muted);margin:6px 0 0}
 
 /* Features */
-.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 28px;margin-top:34px}
-@media (max-width:860px){.feat{grid-template-columns:repeat(2,1fr)}}
+.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 28px;margin-top:34px}
 @media (max-width:540px){.feat{grid-template-columns:1fr}}
 .feat .card{min-width:0}
 .feat .ic{width:30px;height:30px;color:var(--accent)}
@@ -221,32 +220,22 @@ footer a{color:var(--muted)}
       <div class="card">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20 3 17V4l6 3 6-3 6 3v13l-6-3-6 3Z"/><path d="M9 7v13M15 4v13"/></svg>
         <h3>Seamless map navigation</h3>
-        <p>A real moving map on the RTX dashboard — not just a turn arrow. Pan, zoom, day and night, your choice of map style.</p>
+        <p>A full, moving map right on your cluster — not a tiny arrow. Your roads, your style, day and night.</p>
       </div>
       <div class="card">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V11"/><path d="M5 11V7h11l3 2-3 2H5Z"/><path d="M9 7V4h7"/></svg>
         <h3>Turn‑by‑turn + lanes</h3>
-        <p>Traffic‑aware ETAs, two‑wheeler‑friendly routes, lane guidance and spoken directions that work with the screen off.</p>
+        <p>Know the exact lane and the real ETA. Two‑wheeler‑friendly routes, spoken aloud so you never glance down.</p>
       </div>
       <div class="card">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l-2 4a2 2 0 0 1-2 1A14 14 0 0 1 4 6a2 2 0 0 1 1-2Z"/></svg>
         <h3>Music &amp; calls on the dash</h3>
-        <p>See who's calling and accept or reject from the handlebar. Control music with track and album art, hands on the bars.</p>
+        <p>Answer or wave off calls from the handlebar. Skip tracks with album art — hands never leave the grips.</p>
       </div>
       <div class="card">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
         <h3>Every ride, recorded</h3>
-        <p>Speed, RPM, fuel, economy and elevation become per‑ride stats and charts — plus shareable ride cards for your feed.</p>
-      </div>
-      <div class="card">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg>
-        <h3>One‑tap Home &amp; Office</h3>
-        <p>A home‑screen widget routes you to your saved places on the fastest road, and starts the ride in a tap.</p>
-      </div>
-      <div class="card">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0"/><path d="M5 12a11 11 0 0 1 14 0"/><path d="M8.5 15.5a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg>
-        <h3>Keeps working mid‑ride</h3>
-        <p>Bluetooth and Wi‑Fi link with cached maps, so the cluster stays live even where there's no mobile signal.</p>
+        <p>Speed, RPM, fuel and climb, saved automatically. Relive every ride in charts — or share a card that looks the part.</p>
       </div>
     </div>
     <div class="note">
