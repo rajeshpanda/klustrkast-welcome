@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KlustrKast Manual</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+<meta name="description" content="How to set up and use KlustrKast: connect to your cluster, navigate, record rides, music, calls, widgets and troubleshooting.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KlustrKast — User manual">
+<meta property="og:description" content="Set up, connect to your cluster, navigate, record and share rides.">
+<meta property="og:url" content="https://rajeshpanda.github.io/klustrkast-welcome/manual.html">
+<meta name="theme-color" content="#f3f4f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+@font-face{font-family:"KKDot";src:url("dotmatrix.ttf") format("truetype");font-display:swap}
+/* Layout: reference manual. Sticky contents rail on wide screens, single reading column (max ~70ch) beside it;
+   on phones the contents collapse into a details block at the top. Same tokens as the landing page. */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --surface-2:#e9ebee; --hero:#14171b;
+  --fg:#191c20; --muted:#646a71; --faint:#9298a0; --border:#e3e6e9;
+  --accent:#dd3b2e; --accent-ink:#ffffff; --ok:#1f9d57; --warn:#b26a00; --warn-bg:#fff6e5;
+  --radius:16px;
+  --font-head:"Space Grotesk",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
+  --fg:#eceef1; --muted:#a3a9b0; --faint:#6d737a; --border:#262b31;
+  --accent:#f0564a; --ok:#4cc38a; --warn:#e2a23b; --warn-bg:#2a2113;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
+  --fg:#eceef1; --muted:#a3a9b0; --faint:#6d737a; --border:#262b31;
+  --accent:#f0564a; --ok:#4cc38a; --warn:#e2a23b; --warn-bg:#2a2113;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-head);text-wrap:balance;margin:0;letter-spacing:-0.01em}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:18px}
+.brand{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+.brand b{font-family:"KKDot",var(--font-head);font-size:20px;font-weight:400;text-transform:uppercase;letter-spacing:2px}
+.brand span{font-size:13px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:14px;border-radius:999px;padding:.6em 1.15em;text-decoration:none;border:1px solid transparent;white-space:nowrap;transition:transform .18s var(--ease),filter .18s}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+@media (hover:hover){.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}}
+
+/* Title block */
+.title{padding-block:26px 30px;border-bottom:1px solid var(--border)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.title h1{font-size:clamp(30px,5.4vw,44px);line-height:1.08;margin-top:10px}
+.title p{color:var(--muted);max-width:60ch;margin:14px 0 0;font-size:17px}
+.meta{margin-top:14px;font-size:13px;color:var(--faint)}
+
+/* Two-column body */
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;padding-block:34px 60px;align-items:start}
+.toc{position:sticky;top:18px;font-size:14px}
+.toc b{display:block;font-family:var(--font-head);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--border)}
+.toc a{display:block;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;transition:color .15s,border-color .15s}
+.toc a:hover{color:var(--fg)}
+.toc a.on{color:var(--accent);border-left-color:var(--accent);font-weight:500}
+.toc-m{display:none}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:0;padding-top:20px}
+  .toc{display:none}
+  .toc-m{display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:8px}
+  .toc-m summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .toc-m summary::-webkit-details-marker{display:none}
+  .toc-m summary::after{content:"+";color:var(--muted);font-size:20px;line-height:1;transition:transform .25s var(--ease)}
+  .toc-m[open] summary::after{transform:rotate(45deg)}
+  .toc-m ol{margin:0;padding:0 16px 12px 36px;color:var(--muted)}
+  .toc-m a{display:block;padding:5px 0;text-decoration:none}
+}
+
+/* Content */
+.doc{min-width:0;max-width:720px}
+.doc section{padding-top:38px;scroll-margin-top:8px}
+.doc section:first-child{padding-top:0}
+.doc h2{font-size:clamp(23px,3.4vw,28px);display:flex;align-items:baseline;gap:12px}
+.doc h2 .n{font-size:14px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.doc h3{font-size:17px;margin-top:26px}
+.doc p{margin:10px 0 0}
+.doc ul,.doc ol{margin:10px 0 0;padding-left:1.3em}
+.doc li{margin-top:6px}
+.doc li::marker{color:var(--faint)}
+.doc ol.steps{list-style:none;padding:0;counter-reset:s}
+.doc ol.steps>li{counter-increment:s;position:relative;padding-left:42px;margin-top:14px}
+.doc ol.steps>li::before{content:counter(s);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:999px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:14px;color:var(--accent)}
+.ui{font-weight:600;white-space:nowrap}
+.dot{font-family:"KKDot",var(--font-head);text-transform:uppercase;letter-spacing:1.5px;font-size:.92em;white-space:nowrap}
+.lead-in{color:var(--muted)}
+
+.note{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:13px 16px;margin-top:16px;font-size:15px}
+.note.warn{border-left-color:var(--warn);background:var(--warn-bg)}
+.note svg{flex:none;margin-top:3px;width:18px;height:18px;color:var(--accent)}
+.note.warn svg{color:var(--warn)}
+.note b{font-weight:600}
+
+.tbl{margin-top:14px;overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:440px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);background:var(--surface-2)}
+td:first-child{font-weight:600;white-space:nowrap}
+
+.figs{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+figure{margin:0;width:min(100%,210px);background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+figure img{display:block;width:100%;height:auto;aspect-ratio:540/1140;object-fit:cover;object-position:top;background:var(--surface-2)}
+figcaption{font-size:12.5px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--border)}
+
+.faq{margin-top:14px;border-top:1px solid var(--border)}
+.faq details{border-bottom:1px solid var(--border)}
+.faq summary{cursor:pointer;list-style:none;padding:14px 2px;font-weight:500;display:flex;justify-content:space-between;gap:12px;align-items:center;transition:color .2s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--muted);font-size:20px;line-height:1;transition:transform .25s var(--ease),color .2s}
+.faq details[open] summary::after{transform:rotate(45deg);color:var(--accent)}
+.faq details>div{color:var(--muted);font-size:15px;margin:0 2px 16px}
+.faq details>div ul,.faq details>div ol{margin-top:6px}
+@media (hover:hover){.faq summary:hover{color:var(--accent)}}
+
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+footer{padding-block:30px;border-top:1px solid var(--border)}
+footer p{font-size:12.5px;color:var(--faint);margin:0 0 6px}
+footer a{color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap top">
+  <a class="brand" href="./"><b>KlustrKast</b><span>Manual</span></a>
+  <a class="btn btn-primary" href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Get the app</a>
+</div>
+
+<div class="wrap title">
+  <div class="eyebrow">User manual</div>
+  <h1>From install to your first ride with the map on your cluster.</h1>
+  <p>Everything in the app, in the order you'll meet it: setup, connecting to the bike, navigation, rides, music and calls, and what to do when something doesn't work.</p>
+  <div class="meta">Covers KlustrKast 1.3.7 · Android 12 or newer</div>
+</div>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="Contents">
+    <b>Contents</b>
+    <ol id="toc">
+      <li><a href="#need">What you need</a></li>
+      <li><a href="#install">Install &amp; sign in</a></li>
+      <li><a href="#setup">First-time setup</a></li>
+      <li><a href="#connect">Connect to your bike</a></li>
+      <li><a href="#navigate">Navigate</a></li>
+      <li><a href="#cluster">Your cluster screen</a></li>
+      <li><a href="#fuel">Fuel stops</a></li>
+      <li><a href="#media">Music &amp; calls</a></li>
+      <li><a href="#rides">Rides</a></li>
+      <li><a href="#widgets">Widgets &amp; shortcuts</a></li>
+      <li><a href="#settings">Other settings</a></li>
+      <li><a href="#trouble">Troubleshooting</a></li>
+      <li><a href="#know">Good to know</a></li>
+    </ol>
+  </nav>
+
+  <main class="doc">
+    <details class="toc-m">
+      <summary>Contents</summary>
+      <ol>
+        <li><a href="#need">What you need</a></li>
+        <li><a href="#install">Install &amp; sign in</a></li>
+        <li><a href="#setup">First-time setup</a></li>
+        <li><a href="#connect">Connect to your bike</a></li>
+        <li><a href="#navigate">Navigate</a></li>
+        <li><a href="#cluster">Your cluster screen</a></li>
+        <li><a href="#fuel">Fuel stops</a></li>
+        <li><a href="#media">Music &amp; calls</a></li>
+        <li><a href="#rides">Rides</a></li>
+        <li><a href="#widgets">Widgets &amp; shortcuts</a></li>
+        <li><a href="#settings">Other settings</a></li>
+        <li><a href="#trouble">Troubleshooting</a></li>
+        <li><a href="#know">Good to know</a></li>
+      </ol>
+    </details>
+
+    <section id="need">
+      <h2><span class="n">01</span>What you need</h2>
+      <ul>
+        <li>A supported motorcycle with the map-mirroring (Wi‑Fi) cluster. See the <a href="./#features">supported bikes</a> on the home page.</li>
+        <li>An Android phone running <b>Android 12 or newer</b>.</li>
+        <li>The Google account you registered with on the sign-up form.</li>
+        <li>Mobile data for planning routes and loading maps. Areas you've already ridden through are kept on the phone and load without signal.</li>
+      </ul>
+      <div class="note warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+        <div><b>Ride first.</b> Set everything up while parked. Don't use the phone or the app while moving. Routes are suggestions, so always follow the road, signs and traffic laws.</div>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2><span class="n">02</span>Install &amp; sign in</h2>
+      <p>KlustrKast isn't on the Play Store. You install it from the invite you receive by email.</p>
+      <ol class="steps">
+        <li>Open the invite email <b>on your phone</b> and follow its link to download KlustrKast.</li>
+        <li>When Android asks, allow your browser or files app to <span class="ui">Install unknown apps</span>.</li>
+        <li>If Google Play Protect shows a warning, tap <span class="ui">More details</span>, then <span class="ui">Install anyway</span>. It warns about any app it hasn't seen before.</li>
+        <li>Open KlustrKast and tap <span class="ui">Sign in with Google</span>. Choose the same account you registered with.</li>
+      </ol>
+      <p class="lead-in">If you see a locked screen instead of the map, that account doesn't have access yet. Tap <span class="ui">Sign out &amp; try another account</span> if you picked the wrong one, or reply to your invite email.</p>
+      <p class="lead-in">Updates arrive the same way. Install the new version over the old one and your rides and settings stay.</p>
+    </section>
+
+    <section id="setup">
+      <h2><span class="n">03</span>First-time setup</h2>
+      <h3>Pick your motorcycle</h3>
+      <p>On first launch, choose your bike under <span class="ui">Which motorcycle?</span> This matches the app to your cluster's turn arrows and call screen. You can change it later in <span class="ui">Settings → My motorcycle</span>.</p>
+
+      <h3>Allow permissions</h3>
+      <p>The <span class="ui">Before your first ride</span> screen lists what the app needs. Tap <span class="ui">Allow permissions</span> and accept each one.</p>
+      <div class="tbl"><table>
+        <tr><th>Permission</th><th>What it's for</th></tr>
+        <tr><td>Location</td><td>Puts you on the map and follows your route.</td></tr>
+        <tr><td>Bluetooth</td><td>Finds your bike and drives the turn arrow on the cluster.</td></tr>
+        <tr><td>Nearby Wi‑Fi</td><td>Sends the map picture to your cluster.</td></tr>
+        <tr><td>Notifications</td><td>Keeps the app running with your screen off.</td></tr>
+        <tr><td>Phone / calls</td><td>Shows who's calling, and lets the handlebar joystick answer or reject.</td></tr>
+        <tr><td>Notification access <span style="font-weight:400;color:var(--muted)">(optional)</span></td><td>Shows the song that's playing, handles WhatsApp calls, and mirrors Google Maps directions.</td></tr>
+      </table></div>
+
+      <h3>Let it run in the background</h3>
+      <p>This is the setting that most affects screen-off riding. Open <span class="ui">Settings → Permissions</span> and tap <span class="ui">Allow background activity</span>. Without it, Android can pause music and live updates when the screen turns off.</p>
+      <div class="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <div>The <span class="ui">Permissions</span> card only appears in Settings while something is still missing. If you don't see it, you're all set.</div>
+      </div>
+    </section>
+
+    <section id="connect">
+      <h2><span class="n">04</span>Connect to your bike</h2>
+      <ol class="steps">
+        <li>Turn the bike's ignition on. Make sure <b>Bluetooth and Wi‑Fi</b> are on in your phone.</li>
+        <li>On the <span class="dot">Map</span> tab, switch on <span class="dot">Cluster streaming</span> at the top.</li>
+        <li>The first time, Android asks whether to connect to the bike's Wi‑Fi. Accept it.</li>
+        <li>Wait for the three moving dots to change to <span class="dot">Active</span>. The cluster then switches from its normal view to KlustrKast.</li>
+        <li>Lock your phone and put it away. Streaming keeps running with the screen off.</li>
+      </ol>
+      <h3>Things to know</h3>
+      <ul>
+        <li><b>Your bike is remembered.</b> The first cluster you connect to becomes your bike, and the app ignores other clusters nearby.</li>
+        <li><b>Starting navigation switches streaming on for you.</b> You don't have to flip the switch first.</li>
+        <li><b>The cluster shows the map only while you're navigating in KlustrKast.</b> Otherwise it shows your <a href="#cluster">idle wallpaper</a> with your widgets and music.</li>
+        <li><b>If the link drops,</b> the app reconnects on its own. After 5 minutes without finding the bike it stops and shows a <span class="ui">Cluster not found</span> notification. Tap it to try again.</li>
+        <li><b>To stop,</b> switch <span class="dot">Cluster streaming</span> off. If you only turn the ignition off, the app looks for the bike for up to 5 minutes and then stops by itself.</li>
+      </ul>
+      <p>Changing bikes? Go to <span class="ui">Settings → My motorcycle → Forget this motorcycle</span>, then connect to the new one.</p>
+    </section>
+
+    <section id="navigate">
+      <h2><span class="n">05</span>Navigate</h2>
+      <h3>Choose a destination</h3>
+      <ul>
+        <li><b>Search:</b> type at least 3 letters in <span class="ui">Where to?</span> and pick a result. Recent places appear when you tap the box.</li>
+        <li><b>Long-press the map:</b> hold a spot briefly and release to drop a pin there.</li>
+        <li><b>Share from Google Maps:</b> in Google Maps tap <span class="ui">Share</span> and choose KlustrKast. The place opens as a route preview.</li>
+        <li><b>Home and Office:</b> tap the <span class="ui">Home</span> or <span class="ui">Office</span> chip under the search box.</li>
+      </ul>
+      <h3>Save Home and Office</h3>
+      <p>Press and hold the spot on the map for <b>3 seconds</b>. In <span class="ui">Save this place</span>, choose <span class="ui">Home</span> or <span class="ui">Office</span>. To change one later, hold the new spot and save again.</p>
+
+      <h3>Pick a route and go</h3>
+      <ol class="steps">
+        <li>The preview lists up to three routes: <span class="ui">Fastest</span>, then alternatives labelled by how much longer they take, such as <span class="ui">+5 min</span>. Each shows time, distance and arrival time.</li>
+        <li>Tap a card to select that route. It's highlighted on the map.</li>
+        <li>Tap <span class="ui">Start navigation</span>.</li>
+      </ol>
+      <div class="figs">
+        <figure><img src="screenshots/map.png?v=20261115" alt="Map tab with cluster streaming switch, search box, Home and Office" loading="lazy"><figcaption>Map tab</figcaption></figure>
+        <figure><img src="screenshots/route.png?v=20261116" alt="Route preview with fastest and alternative routes" loading="lazy"><figcaption>Choose your route</figcaption></figure>
+      </div>
+
+      <h3>While riding</h3>
+      <ul>
+        <li>The phone shows the next turn, distance and road name at the top, with your speed and arrival time at the bottom. The cluster shows the map with the turn arrow and distance.</li>
+        <li>If you leave the route, it reroutes automatically.</li>
+        <li>If you move the map by hand, tap <span class="ui">Re-center</span> to follow your position again.</li>
+        <li>When you arrive, the banner shows <span class="ui">Location reached</span>.</li>
+      </ul>
+      <h3>Voice guidance</h3>
+      <p>While navigating, tap the speaker button to choose <span class="ui">Off</span>, <span class="ui">Alerts</span> (speaks once at the turn) or <span class="ui">Full</span> (an early heads-up plus a reminder at the turn). It starts on Full. Voice works with the screen off and lowers your music while it speaks.</p>
+      <h3>End navigation</h3>
+      <p>Tap <span class="ui">End</span> in the app, or the <span class="ui">End</span> button on the navigation notification. Ending navigation doesn't disconnect the cluster. Switch <span class="dot">Cluster streaming</span> off for that.</p>
+      <h3>Prefer Google Maps?</h3>
+      <p>If you navigate in Google Maps while streaming, KlustrKast passes its turn arrow and distance to the cluster. This needs notification access, and the cluster shows the arrow without the map.</p>
+    </section>
+
+    <section id="cluster">
+      <h2><span class="n">06</span>Your cluster screen</h2>
+      <p>These are under <span class="ui">Settings → Cluster</span>.</p>
+      <div class="tbl"><table>
+        <tr><th>Setting</th><th>What it does</th></tr>
+        <tr><td>Cluster stream</td><td><b>Frame rate</b> (Low, Medium, High): higher is smoother but uses more battery and heat. <b>Map view</b>: a fixed zoom, or <i>Speed-based</i>, which zooms out on highways and in near turns. <b>Map tilt</b>: 0° is flat, higher gives a 3D forward view.</td></tr>
+        <tr><td>Show road details</td><td>Off gives a distraction-free map with a plain arrow: no road name, turn distance or turn arrows.</td></tr>
+        <tr><td>Cluster widgets</td><td>Up to four live readouts beside the map, two per side. Choose from RPM, Voltage, Throttle %, Fuel %, GPS Speed, Altitude, Fuel Economy, Odometer and Range, or None.</td></tr>
+        <tr><td>Dark mode</td><td>For the cluster map. <i>Auto</i> follows the bike's own day/night display. Or choose Never, Forever, or Custom hours.</td></tr>
+        <tr><td>Idle wallpaper</td><td>What the cluster shows when you're not navigating. Pick a photo and drag to frame it, or use an animated GIF.</td></tr>
+      </table></div>
+      <div class="figs">
+        <figure><img src="screenshots/widgets.png?v=20261116" alt="Cluster widget options" loading="lazy"><figcaption>Cluster widgets</figcaption></figure>
+        <figure><img src="screenshots/wallpaper.png?v=20261116" alt="Idle wallpaper setting" loading="lazy"><figcaption>Idle wallpaper</figcaption></figure>
+        <figure><img src="screenshots/dark.png?v=20261116" alt="App in dark mode" loading="lazy"><figcaption>Dark map</figcaption></figure>
+      </div>
+      <ul>
+        <li>A GIF wallpaper must already be 416 × 320 pixels. It plays as-is, and uses more battery than a still photo.</li>
+        <li>Fuel % and Fuel Economy are marked beta, and Throttle % is still being verified, so treat those readings as approximate.</li>
+      </ul>
+    </section>
+
+    <section id="fuel">
+      <h2><span class="n">07</span>Fuel stops</h2>
+      <ul>
+        <li><b>Any time:</b> tap the fuel-pump button on the map to show petrol pumps on the phone and the cluster. Tap again to hide them. With a route active, it shows pumps ahead on your route.</li>
+        <li><b>Automatically when low:</b> when the bike's fuel drops to the level you set, pump markers appear on the cluster by themselves.</li>
+      </ul>
+      <p>Set this up in <span class="ui">Settings → Fuel stations</span>: the low-fuel level (30% to start with), your <span class="ui">Preferred brands</span>, and <span class="ui">Always show on cluster</span> if you want pumps visible all the time. If none of your preferred brands are nearby, all pumps are shown so you're never stuck.</p>
+      <div class="figs">
+        <figure><img src="screenshots/fuel.png?v=20261116" alt="Fuel stations settings" loading="lazy"><figcaption>Fuel stations</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="media">
+      <h2><span class="n">08</span>Music &amp; calls</h2>
+      <h3>Music</h3>
+      <ul>
+        <li>Use the handlebar music buttons to play, pause and skip tracks. They work with your screen off.</li>
+        <li>With notification access granted, the buttons control whichever player is actually playing. Without it they still work, but may reach a different music app.</li>
+        <li>In <span class="ui">Settings → Music</span>, choose where the track shows: <span class="ui">On the cluster</span> (the bike's own music screen, map stays clear) or <span class="ui">On the map bar</span> (along the bottom of the map).</li>
+      </ul>
+      <h3>Calls</h3>
+      <ul>
+        <li>Incoming calls show on the cluster with the caller's name. Use the handlebar joystick to accept or reject. The map stays up.</li>
+        <li>WhatsApp calls work too, and need notification access.</li>
+        <li>In <span class="ui">Settings → Calls</span>, choose <span class="ui">On the cluster</span> (joystick accept/reject) or <span class="ui">On the map bar</span> (display only).</li>
+      </ul>
+    </section>
+
+    <section id="rides">
+      <h2><span class="n">09</span>Rides</h2>
+      <p>Rides record automatically whenever you're navigating or streaming to the cluster. There's nothing to start or stop: the ride is saved when your session ends. Very short trips (under about 500 m) aren't kept.</p>
+      <h3>Look back at a ride</h3>
+      <p>Open the <span class="dot">Rides</span> tab and tap a ride to see its route, distance, duration, speeds and elevation. With the cluster connected you also get odometer, fuel used, economy and RPM, plus charts you can tap to enlarge.</p>
+      <div class="figs">
+        <figure><img src="screenshots/rides.png?v=20261115" alt="Rides list" loading="lazy"><figcaption>Your rides</figcaption></figure>
+        <figure><img src="screenshots/detail.png?v=20261115" alt="Ride detail with route map and stats" loading="lazy"><figcaption>Ride detail</figcaption></figure>
+        <figure><img src="screenshots/share.png?v=20261115" alt="Share ride card composer" loading="lazy"><figcaption>Share card</figcaption></figure>
+      </div>
+      <h3>Manage rides</h3>
+      <ul>
+        <li><b>Rename:</b> open a ride and tap the pencil.</li>
+        <li><b>Merge:</b> long-press a ride, select the others, then tap <span class="ui">Merge</span>. The originals are kept.</li>
+        <li><b>Delete:</b> tap the bin.</li>
+        <li><b>Back up or move phones:</b> on the Rides tab tap ⋮, then <span class="ui">Export rides…</span> to save a file, and <span class="ui">Import rides…</span> on the new phone.</li>
+      </ul>
+      <div class="note warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+        <div><b>Deleting is immediate.</b> The bin, and <span class="ui">Settings → Ride tracking → Clear ride history</span>, don't ask for confirmation. Export first if you want a copy.</div>
+      </div>
+      <h3>Share a ride to Instagram</h3>
+      <ol class="steps">
+        <li>Open a ride and tap the share icon.</li>
+        <li>Shape the card with the four tabs: <span class="ui">Image</span> (add your own photo), <span class="ui">Style</span> (layout, font, panel, Story or Square), <span class="ui">Stats</span> (which numbers to show) and <span class="ui">Route</span> (line colour).</li>
+        <li>Drag to move and pinch to resize in the preview.</li>
+        <li>Tap <span class="ui">Instagram</span> to open it as a Story, or <span class="ui">Download</span> to save it to your photos.</li>
+      </ol>
+      <p class="lead-in"><span class="ui">Hide start &amp; end</span> (on by default, under Route) trims about 200 m off each end, so the card doesn't reveal your home or workplace.</p>
+      <p class="lead-in">To stop recording, turn off <span class="ui">Settings → Ride tracking → Log my rides</span>. Past rides stay.</p>
+    </section>
+
+    <section id="widgets">
+      <h2><span class="n">10</span>Widgets &amp; shortcuts</h2>
+      <p>Add these from your phone's home screen: long-press an empty area, choose <span class="ui">Widgets</span>, and find KlustrKast.</p>
+      <div class="tbl"><table>
+        <tr><th>Widget</th><th>What it does</th></tr>
+        <tr><td>Control</td><td>One button that switches cluster streaming on or off. Grey is off, orange is connecting, green is streaming.</td></tr>
+        <tr><td>Quick</td><td>The same streaming button, plus <b>Home</b> and <b>Office</b>. Those open the app and start navigating straight away on the fastest route.</td></tr>
+      </table></div>
+      <p>You can also long-press the KlustrKast app icon for <span class="ui">Navigate Home</span> and <span class="ui">Navigate to Office</span>. Both need Home and Office <a href="#navigate">saved</a> first.</p>
+    </section>
+
+    <section id="settings">
+      <h2><span class="n">11</span>Other settings</h2>
+      <div class="tbl"><table>
+        <tr><th>Setting</th><th>What it does</th></tr>
+        <tr><td>Map style</td><td>The look of the map on phone and cluster (Streets, Outdoor, Satellite and more). Reopen the map or restart streaming to apply. Satellite styles use more data.</td></tr>
+        <tr><td>Route guidance</td><td><b>Normal</b> is quicker to plan and includes lane guidance. <b>2W</b> avoids roads motorcycles aren't allowed on, such as some expressways. Switch to 2W only if Normal sends you down a road you can't ride.</td></tr>
+        <tr><td>Location source</td><td>Leave on <b>Fused + GPS (recommended)</b>. Try GPS only if the map jumps; try Fused + GPS + Network only if GPS won't lock on your phone.</td></tr>
+        <tr><td>Map cache</td><td>Areas you ride through are stored (up to 400 MB) so they load without signal. <i>Clear map cache</i> frees the space.</td></tr>
+        <tr><td>API keys</td><td>Optional. Your own free MapTiler key gives more detailed maps; a TomTom key gives TomTom routing and richer search. Paste them here; they stay on your phone. The app works without them.</td></tr>
+        <tr><td>Live traffic</td><td>Switched off for now.</td></tr>
+        <tr><td>Account</td><td>Shows who's signed in and the app version. <i>Logout</i> signs you out.</td></tr>
+      </table></div>
+    </section>
+
+    <section id="trouble">
+      <h2><span class="n">12</span>Troubleshooting</h2>
+      <div class="faq">
+        <details><summary>The cluster won't connect</summary><div>
+          <ol>
+            <li>Check the ignition is on, and that both Bluetooth and Wi‑Fi are on in your phone.</li>
+            <li>On Android 13 or newer, check <b>Nearby Wi‑Fi</b> is allowed (Settings → Permissions).</li>
+            <li>If Android asked to connect to the bike's Wi‑Fi and you declined, switch streaming off and on, and accept it.</li>
+            <li>Turn the ignition off, wait a few seconds, turn it on, and switch streaming on again.</li>
+            <li>New or different bike? Use Settings → My motorcycle → <b>Forget this motorcycle</b>.</li>
+          </ol>
+          The app keeps trying for 5 minutes before it stops.
+        </div></details>
+        <details><summary>It works, but stops when I lock the phone</summary><div>
+          Allow background activity: Settings → Permissions → <b>Allow background activity</b>. Also check your phone's own battery settings for KlustrKast and set them to <b>Unrestricted</b>, and turn off any power-saving mode while riding. Make sure Notifications are allowed.
+        </div></details>
+        <details><summary>The cluster shows my wallpaper, not the map</summary><div>
+          That's expected when you aren't navigating. Start a route in KlustrKast and the map appears.
+        </div></details>
+        <details><summary>The map jumps, or my position lags</summary><div>
+          Update to the latest version first. Keep Location source on <b>Fused + GPS</b>, and check the phone isn't in a power-saving mode. If it still happens, send us a ride export (below).
+        </div></details>
+        <details><summary>No song title on the cluster, or the buttons control the wrong app</summary><div>
+          Grant notification access: Settings → Permissions → <b>Enable notification access</b>.
+        </div></details>
+        <details><summary>The joystick doesn't answer calls</summary><div>
+          Set Settings → Calls to <b>On the cluster</b> and make sure the phone/calls permission is allowed. For WhatsApp calls, notification access is needed as well.
+        </div></details>
+        <details><summary>"No GPS fix yet" or "Couldn't build a route"</summary><div>
+          For GPS, step outside into the open and wait a few seconds. Routes need mobile data, so check your connection and try again.
+        </div></details>
+        <details><summary>The app says this version is no longer supported</summary><div>
+          Install the latest version from your invite email. Your rides and settings are kept.
+        </div></details>
+        <details><summary>How do I report a problem?</summary><div>
+          On the Rides tab tap ⋮ → <b>Export rides…</b> and send us the file, with your phone model, your bike, and what happened. The export includes a small technical summary for each ride (update rate, battery, power-saving), which helps us find the cause. Reply to your invite email, or message <a href="https://www.instagram.com/geargyani/" target="_blank" rel="noopener">@geargyani</a> on Instagram.
+        </div></details>
+      </div>
+    </section>
+
+    <section id="know">
+      <h2><span class="n">13</span>Good to know</h2>
+      <ul>
+        <li>The app keeps your latest 100 rides. Older ones are removed automatically, so export if you want to keep everything.</li>
+        <li>Pressing Back on the Map tab only hides the app. Streaming and navigation keep running.</li>
+        <li>KlustrKast only displays information on the cluster. It doesn't change anything on the bike.</li>
+        <li>There are no ads. Your rides are stored on your phone, not on our servers. The app does send crash and connection-error reports so problems can be found and fixed.</li>
+        <li>KlustrKast is provided as-is, with no warranty. See the <a href="./">FAQ on the home page</a> for the full terms.</li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<div class="wrap">
+  <footer>
+    <p>Independent project, not affiliated with any vehicle manufacturer. All brand names and marks belong to their respective owners.</p>
+    <p><a href="./">KlustrKast home</a> · <a href="https://forms.gle/VRF4mDtzG1sufM9z8" target="_blank" rel="noopener">Get the app</a> · <a href="https://www.instagram.com/geargyani/" target="_blank" rel="noopener">@geargyani</a></p>
+  </footer>
+</div>
+
+<script>
+/* Highlight the section in view in the contents rail; close the phone contents after a tap. */
+(function(){
+  var links=Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        links.forEach(function(a){a.classList.remove('on');});
+        var a=map[e.target.id];if(a)a.classList.add('on');
+      });
+    },{rootMargin:'-10% 0px -75% 0px'});
+    Array.prototype.forEach.call(document.querySelectorAll('.doc section'),function(s){io.observe(s);});
+  }
+  var m=document.querySelector('.toc-m');
+  if(m)m.addEventListener('click',function(e){if(e.target.tagName==='A')m.open=false;});
+})();
+</script>
+</body>
+</html>
