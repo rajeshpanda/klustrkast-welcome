@@ -200,6 +200,175 @@ footer a{color:var(--muted)}
         <li>The Google account you registered with on the sign-up form.</li>
         <li>Mobile data for planning routes and loading maps. Areas you've already ridden through are kept on the phone and load without signal.</li>
       </ul>
+      <div class="note warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+        <div><b>Ride first.</b> Set everything up while parked. Don't use the phone or the app while moving. Routes are suggestions, so always follow the road, signs and traffic laws.</div>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2><span class="n">02</span>Install &amp; sign in</h2>
+      <p>KlustrKast isn't on the Play Store. You install it from the invite you receive by email.</p>
+      <ol class="steps">
+        <li>Open the invite email <b>on your phone</b> and follow its link to download KlustrKast.</li>
+        <li>When Android asks, allow your browser or files app to <span class="ui">Install unknown apps</span>.</li>
+        <li>If Google Play Protect shows a warning, tap <span class="ui">More details</span>, then <span class="ui">Install anyway</span>. It warns about any app it hasn't seen before.</li>
+        <li>Open KlustrKast and tap <span class="ui">Sign in with Google</span>. Choose the same account you registered with.</li>
+      </ol>
+      <p class="lead-in">If you see a locked screen instead of the map, that account doesn't have access yet. Tap <span class="ui">Sign out &amp; try another account</span> if you picked the wrong one, or reply to your invite email.</p>
+      <p class="lead-in">Updates arrive the same way. Install the new version over the old one and your rides and settings stay.</p>
+    </section>
+
+    <section id="setup">
+      <h2><span class="n">03</span>First-time setup</h2>
+      <h3>Pick your motorcycle</h3>
+      <p>On first launch, choose your bike under <span class="ui">Which motorcycle?</span> This matches the app to your cluster's turn arrows and call screen. You can change it later in <span class="ui">Settings → My motorcycle</span>.</p>
+
+      <h3>Allow permissions</h3>
+      <p>The <span class="ui">Before your first ride</span> screen lists what the app needs. Tap <span class="ui">Allow permissions</span> and accept each one.</p>
+      <div class="tbl"><table>
+        <tr><th>Permission</th><th>What it's for</th></tr>
+        <tr><td>Location</td><td>Puts you on the map and follows your route.</td></tr>
+        <tr><td>Bluetooth</td><td>Finds your bike and drives the turn arrow on the cluster.</td></tr>
+        <tr><td>Nearby Wi‑Fi</td><td>Sends the map picture to your cluster.</td></tr>
+        <tr><td>Notifications</td><td>Keeps the app running with your screen off.</td></tr>
+        <tr><td>Phone / calls</td><td>Shows who's calling, and lets the handlebar joystick answer or reject.</td></tr>
+        <tr><td>Notification access <span style="font-weight:400;color:var(--muted)">(optional)</span></td><td>Shows the song that's playing, handles WhatsApp calls, and mirrors Google Maps directions.</td></tr>
+      </table></div>
+
+      <h3>Let it run in the background</h3>
+      <p>This is the setting that most affects screen-off riding. Open <span class="ui">Settings → Permissions</span> and tap <span class="ui">Allow background activity</span>. Without it, Android can pause music and live updates when the screen turns off.</p>
+      <div class="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <div>The <span class="ui">Permissions</span> card only appears in Settings while something is still missing. If you don't see it, you're all set.</div>
+      </div>
+    </section>
+
+    <section id="connect">
+      <h2><span class="n">04</span>Connect to your bike</h2>
+      <ol class="steps">
+        <li>Turn the bike's ignition on. Make sure <b>Bluetooth and Wi‑Fi</b> are on in your phone.</li>
+        <li>On the <span class="dot">Map</span> tab, switch on <span class="dot">Cluster streaming</span> at the top.</li>
+        <li>The first time, Android asks whether to connect to the bike's Wi‑Fi. Accept it.</li>
+        <li>Wait for the three moving dots to change to <span class="dot">Active</span>. The cluster then switches from its normal view to KlustrKast.</li>
+        <li>Lock your phone and put it away. Streaming keeps running with the screen off.</li>
+      </ol>
+      <h3>Things to know</h3>
+      <ul>
+        <li><b>Your bike is remembered.</b> The first cluster you connect to becomes your bike, and the app ignores other clusters nearby.</li>
+        <li><b>Starting navigation switches streaming on for you.</b> You don't have to flip the switch first.</li>
+        <li><b>The cluster shows the map only while you're navigating in KlustrKast.</b> Otherwise it shows your <a href="#cluster">idle wallpaper</a> with your widgets and music.</li>
+        <li><b>If the link drops,</b> the app reconnects on its own. After 5 minutes without finding the bike it stops and shows a <span class="ui">Cluster not found</span> notification. Tap it to try again.</li>
+        <li><b>To stop,</b> switch <span class="dot">Cluster streaming</span> off. If you only turn the ignition off, the app looks for the bike for up to 5 minutes and then stops by itself.</li>
+      </ul>
+      <p>Changing bikes? Go to <span class="ui">Settings → My motorcycle → Forget this motorcycle</span>, then connect to the new one.</p>
+    </section>
+
+    <section id="navigate">
+      <h2><span class="n">05</span>Navigate</h2>
+      <h3>Choose a destination</h3>
+      <ul>
+        <li><b>Search:</b> type at least 3 letters in <span class="ui">Where to?</span> and pick a result. Recent places appear when you tap the box.</li>
+        <li><b>Long-press the map:</b> hold a spot briefly and release to drop a pin there.</li>
+        <li><b>Share from Google Maps:</b> in Google Maps tap <span class="ui">Share</span> and choose KlustrKast. The place opens as a route preview.</li>
+        <li><b>Home and Office:</b> tap the <span class="ui">Home</span> or <span class="ui">Office</span> chip under the search box.</li>
+      </ul>
+      <h3>Save Home and Office</h3>
+      <p>Press and hold the spot on the map for <b>3 seconds</b>. In <span class="ui">Save this place</span>, choose <span class="ui">Home</span> or <span class="ui">Office</span>. To change one later, hold the new spot and save again.</p>
+
+      <h3>Pick a route and go</h3>
+      <ol class="steps">
+        <li>The preview lists up to three routes: <span class="ui">Fastest</span>, then alternatives labelled by how much longer they take, such as <span class="ui">+5 min</span>. Each shows time, distance and arrival time.</li>
+        <li>Tap a card to select that route. It's highlighted on the map.</li>
+        <li>Tap <span class="ui">Start navigation</span>.</li>
+      </ol>
+      <div class="figs">
+        <figure><img src="screenshots/map.png?v=20261115" alt="Map tab with cluster streaming switch, search box, Home and Office" loading="lazy"><figcaption>Map tab</figcaption></figure>
+        <figure><img src="screenshots/route.png?v=20261116" alt="Route preview with fastest and alternative routes" loading="lazy"><figcaption>Choose your route</figcaption></figure>
+      </div>
+
+      <h3>While riding</h3>
+      <ul>
+        <li>The phone shows the next turn, distance and road name at the top, with your speed and arrival time at the bottom. The cluster shows the map with the turn arrow and distance.</li>
+        <li>If you leave the route, it reroutes automatically.</li>
+        <li>If you move the map by hand, tap <span class="ui">Re-center</span> to follow your position again.</li>
+        <li>When you arrive, the banner shows <span class="ui">Location reached</span>.</li>
+      </ul>
+      <h3>Voice guidance</h3>
+      <p>While navigating, tap the speaker button to choose <span class="ui">Off</span>, <span class="ui">Alerts</span> (speaks once at the turn) or <span class="ui">Full</span> (an early heads-up plus a reminder at the turn). It starts on Full. Voice works with the screen off and lowers your music while it speaks.</p>
+      <h3>End navigation</h3>
+      <p>Tap <span class="ui">End</span> in the app, or the <span class="ui">End</span> button on the navigation notification. Ending navigation doesn't disconnect the cluster. Switch <span class="dot">Cluster streaming</span> off for that.</p>
+      <h3>Prefer Google Maps?</h3>
+      <p>If you navigate in Google Maps while streaming, KlustrKast passes its turn arrow and distance to the cluster. This needs notification access, and the cluster shows the arrow without the map.</p>
+    </section>
+
+    <section id="cluster">
+      <h2><span class="n">06</span>Your cluster screen</h2>
+      <p>These are under <span class="ui">Settings → Cluster</span>.</p>
+      <div class="tbl"><table>
+        <tr><th>Setting</th><th>What it does</th></tr>
+        <tr><td>Cluster stream</td><td><b>Frame rate</b> (Low, Medium, High): higher is smoother but uses more battery and heat. <b>Map view</b>: a fixed zoom, or <i>Speed-based</i>, which zooms out on highways and in near turns. <b>Map tilt</b>: 0° is flat, higher gives a 3D forward view.</td></tr>
+        <tr><td>Show road details</td><td>Off gives a distraction-free map with a plain arrow: no road name, turn distance or turn arrows.</td></tr>
+        <tr><td>Cluster widgets</td><td>Up to four live readouts beside the map, two per side. Choose from RPM, Voltage, Throttle %, Fuel %, GPS Speed, Altitude, Fuel Economy, Odometer and Range, or None.</td></tr>
+        <tr><td>Dark mode</td><td>For the cluster map. <i>Auto</i> follows the bike's own day/night display. Or choose Never, Forever, or Custom hours.</td></tr>
+        <tr><td>Idle wallpaper</td><td>What the cluster shows when you're not navigating. Pick a photo and drag to frame it, or use an animated GIF.</td></tr>
+      </table></div>
+      <div class="figs">
+        <figure><img src="screenshots/widgets.png?v=20261116" alt="Cluster widget options" loading="lazy"><figcaption>Cluster widgets</figcaption></figure>
+        <figure><img src="screenshots/wallpaper.png?v=20261116" alt="Idle wallpaper setting" loading="lazy"><figcaption>Idle wallpaper</figcaption></figure>
+        <figure><img src="screenshots/dark.png?v=20261116" alt="App in dark mode" loading="lazy"><figcaption>Dark map</figcaption></figure>
+      </div>
+      <ul>
+        <li>A GIF wallpaper must already be 416 × 320 pixels. It plays as-is, and uses more battery than a still photo.</li>
+        <li>Fuel % and Fuel Economy are marked beta, and Throttle % is still being verified, so treat those readings as approximate.</li>
+      </ul>
+    </section>
+
+    <section id="fuel">
+      <h2><span class="n">07</span>Fuel stops</h2>
+      <ul>
+        <li><b>Any time:</b> tap the fuel-pump button on the map to show petrol pumps on the phone and the cluster. Tap again to hide them. With a route active, it shows pumps ahead on your route.</li>
+        <li><b>Automatically when low:</b> when the bike's fuel drops to the level you set, pump markers appear on the cluster by themselves.</li>
+      </ul>
+      <p>Set this up in <span class="ui">Settings → Fuel stations</span>: the low-fuel level (30% to start with), your <span class="ui">Preferred brands</span>, and <span class="ui">Always show on cluster</span> if you want pumps visible all the time. If none of your preferred brands are nearby, all pumps are shown so you're never stuck.</p>
+      <div class="figs">
+        <figure><img src="screenshots/fuel.png?v=20261116" alt="Fuel stations settings" loading="lazy"><figcaption>Fuel stations</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="media">
+      <h2><span class="n">08</span>Music &amp; calls</h2>
+      <h3>Music</h3>
+      <ul>
+        <li>Use the handlebar music buttons to play, pause and skip tracks. They work with your screen off.</li>
+        <li>With notification access granted, the buttons control whichever player is actually playing. Without it they still work, but may reach a different music app.</li>
+        <li>In <span class="ui">Settings → Music</span>, choose where the track shows: <span class="ui">On the cluster</span> (the bike's own music screen, map stays clear) or <span class="ui">On the map bar</span> (along the bottom of the map).</li>
+      </ul>
+      <h3>Calls</h3>
+      <ul>
+        <li>Incoming calls show on the cluster with the caller's name. Use the handlebar joystick to accept or reject. The map stays up.</li>
+        <li>WhatsApp calls work too, and need notification access.</li>
+        <li>In <span class="ui">Settings → Calls</span>, choose <span class="ui">On the cluster</span> (joystick accept/reject) or <span class="ui">On the map bar</span> (display only).</li>
+      </ul>
+    </section>
+
+    <section id="rides">
+      <h2><span class="n">09</span>Rides</h2>
+      <p>Rides record automatically whenever you're navigating or streaming to the cluster. There's nothing to start or stop: the ride is saved when your session ends. Very short trips (under about 500 m) aren't kept.</p>
+      <h3>Look back at a ride</h3>
+      <p>Open the <span class="dot">Rides</span> tab and tap a ride to see its route, distance, duration, speeds and elevation. With the cluster connected you also get odometer, fuel used, economy and RPM, plus charts you can tap to enlarge.</p>
+      <div class="figs">
+        <figure><img src="screenshots/rides.png?v=20261115" alt="Rides list" loading="lazy"><figcaption>Your rides</figcaption></figure>
+        <figure><img src="screenshots/detail.png?v=20261115" alt="Ride detail with route map and stats" loading="lazy"><figcaption>Ride detail</figcaption></figure>
+        <figure><img src="screenshots/share.png?v=20261115" alt="Share ride card composer" loading="lazy"><figcaption>Share card</figcaption></figure>
+      </div>
+      <h3>Manage rides</h3>
+      <ul>
+        <li><b>Rename:</b> open a ride and tap the pencil.</li>
+        <li><b>Merge:</b> long-press a ride, select the others, then tap <span class="ui">Merge</span>. The originals are kept.</li>
+        <li><b>Delete:</b> tap the bin, then confirm.</li>
+        <li><b>Back up or move phones:</b> on the Rides tab tap ⋮, then <span class="ui">Export rides…</span> to save a file, and <span class="ui">Import rides…</span> on the new phone.</li>
+      </ul>
       <div class="note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
         <div><b>Deleting is permanent.</b> The app asks you to confirm before deleting a ride, and before <span class="ui">Settings → Ride tracking → Clear ride history</span> removes all of them. Export first if you want a copy.</div>
