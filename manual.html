@@ -130,6 +130,46 @@ figcaption{font-size:12.5px;color:var(--muted);padding:8px 12px;border-top:1px s
 .faq details>div ul,.faq details>div ol{margin-top:6px}
 @media (hover:hover){.faq summary:hover{color:var(--accent)}}
 
+/* Phones. Nothing may be wider than the screen: button labels wrap, tables turn into stacked rows
+   (setting name above its description) instead of scrolling sideways, screenshots sit two-up. */
+@media (max-width:640px){
+  .ui,.dot{white-space:normal}
+  .note>div{min-width:0}
+  .title{padding-block:18px 24px}
+  .title p{font-size:16px}
+  .doc section{padding-top:32px}
+  .doc ol.steps>li{padding-left:38px}
+  .toc-m a{padding:9px 0}
+  .tbl{overflow-x:visible}
+  table{min-width:0;font-size:15px}
+  .tbl tr{display:block;padding:12px 14px;border-bottom:1px solid var(--border)}
+  .tbl tr:first-child{display:none}
+  .tbl tr:last-child{border-bottom:0}
+  .tbl td{display:block;padding:0;border:0}
+  .tbl td:first-child{white-space:normal;margin-bottom:3px}
+  .tbl td+td{color:var(--muted)}
+  .figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  figure{width:auto}
+  figcaption{padding:7px 10px}
+}
+@media (max-width:420px){
+  .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .top{gap:.6rem;padding-block:14px}
+  .brand{gap:8px;min-width:0}
+  .brand b{font-size:17px;letter-spacing:1.5px}
+  .brand span{font-size:12px;white-space:nowrap}
+  .btn{font-size:13px;padding:.55em .95em}
+}
+/* Smallest phones: no room for the "User Manual" tag beside the logo — the eyebrow right below says it. */
+@media (max-width:350px){
+  .brand span{display:none}
+}
+/* Short landscape phones: the contents rail is already hidden; keep headings from eating the screen. */
+@media (max-height:480px) and (orientation:landscape){
+  .title h1{font-size:28px}
+  .title{padding-block:14px 18px}
+}
+
 a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 footer{padding-block:30px;border-top:1px solid var(--border)}
 footer p{font-size:12.5px;color:var(--faint);margin:0 0 6px}
@@ -149,7 +189,7 @@ footer a{color:var(--muted)}
   <div class="eyebrow">User Manual</div>
   <h1>From install to your first ride with the map on your cluster.</h1>
   <p>Everything in the app, in the order you'll meet it: setup, connecting to the bike, navigation, rides, music and calls, and what to do when something doesn't work.</p>
-  <div class="meta">Covers KlustrKast 1.3.8 · Android 12 or newer</div>
+  <div class="meta">Covers KlustrKast 1.3.13 · Android 12 or newer</div>
 </div>
 
 <div class="wrap layout">
@@ -280,6 +320,7 @@ footer a{color:var(--muted)}
       <ol class="steps">
         <li>The preview lists up to three routes: <span class="ui">Fastest</span>, then alternatives labelled by how much longer they take, such as <span class="ui">+5 min</span>. Each shows time, distance and arrival time.</li>
         <li>Tap a card to select that route. It's highlighted on the map.</li>
+        <li>To change how this trip is planned, tap <span class="ui">Normal</span> or <span class="ui">2W</span> above the routes. 2W avoids roads motorcycles aren't allowed on. The routes are planned again when you switch.</li>
         <li>Tap <span class="ui">Start navigation</span>.</li>
       </ol>
       <div class="figs">
@@ -291,6 +332,7 @@ footer a{color:var(--muted)}
       <ul>
         <li>The phone shows the next turn, distance and road name at the top, with your speed and arrival time at the bottom. The cluster shows the map with the turn arrow and distance.</li>
         <li>If you leave the route, it reroutes automatically.</li>
+        <li>With <a href="#settings">live traffic</a> on, traffic jams on your route are drawn in amber, and heavy jams or closed roads in red, on the phone and the cluster.</li>
         <li>If you move the map by hand, tap <span class="ui">Re-center</span> to follow your position again.</li>
         <li>When you arrive, the banner shows <span class="ui">Location reached</span>.</li>
       </ul>
@@ -400,11 +442,11 @@ footer a{color:var(--muted)}
       <div class="tbl"><table>
         <tr><th>Setting</th><th>What it does</th></tr>
         <tr><td>Map style</td><td>The look of the map on phone and cluster (Streets, Outdoor, Satellite and more). Reopen the map or restart streaming to apply. Satellite styles use more data.</td></tr>
-        <tr><td>Route guidance</td><td><b>Normal</b> is quicker to plan and includes lane guidance. <b>2W</b> avoids roads motorcycles aren't allowed on, such as some expressways. Switch to 2W only if Normal sends you down a road you can't ride.</td></tr>
+        <tr><td>Route guidance</td><td><b>Normal</b> is quicker to plan and includes lane guidance. <b>2W</b> avoids roads motorcycles aren't allowed on, such as some expressways. Switch to 2W only if Normal sends you down a road you can't ride. You can also switch for a single trip on the route preview.</td></tr>
         <tr><td>Location source</td><td>Leave on <b>Fused + GPS (recommended)</b>. Try GPS only if the map jumps; try Fused + GPS + Network only if GPS won't lock on your phone.</td></tr>
         <tr><td>Map cache</td><td>Areas you ride through are stored (up to 400 MB) so they load without signal. <i>Clear map cache</i> frees the space.</td></tr>
-        <tr><td>API keys</td><td>Optional. Your own free MapTiler key gives more detailed maps; a TomTom key gives TomTom routing and richer search. Paste them here; they stay on your phone. The app works without them.</td></tr>
-        <tr><td>Live traffic</td><td>Switched off for now.</td></tr>
+        <tr><td>API keys</td><td>Optional. Your own free MapTiler key gives more detailed maps; a TomTom key gives TomTom routing, live traffic and richer search. Paste them here; they stay on your phone. The app works without them.</td></tr>
+        <tr><td>Live traffic</td><td>Needs a TomTom key. Traffic jams on your route are drawn in amber, and heavy jams or closed roads in red. Ordinary slow traffic isn't coloured, but it is counted in your arrival time, which is updated every 20 minutes while you navigate. Your route and turn instructions don't change. Turn <i>Show traffic</i> off to plan the route once and keep it as it is.</td></tr>
         <tr><td>Account</td><td>Shows who's signed in and the app version. <i>Logout</i> signs you out.</td></tr>
       </table></div>
     </section>
@@ -430,6 +472,9 @@ footer a{color:var(--muted)}
         </div></details>
         <details><summary>The map jumps, or my position lags</summary><div>
           Update to the latest version first. Keep Location source on <b>Fused + GPS</b>, and check the phone isn't in a power-saving mode. If it still happens, send us a ride export (below).
+        </div></details>
+        <details><summary>Live traffic is on, but my route is all blue</summary><div>
+          That's normal most of the time. Only real jams and closed roads are coloured, so a route with slow but moving traffic stays blue. Colour is drawn on the route you've selected, so in the preview tap another route card to see its jams. Check that a TomTom key is saved in Settings → API keys and that <b>Show traffic</b> is on in Settings → Live traffic.
         </div></details>
         <details><summary>No song title on the cluster, or the buttons control the wrong app</summary><div>
           Grant notification access: Settings → Permissions → <b>Enable notification access</b>.
