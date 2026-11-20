@@ -283,6 +283,14 @@ footer a{color:var(--muted)}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
         <div>The <span class="ui">Permissions</span> card only appears in Settings while something is still missing. If you don't see it, you're all set.</div>
       </div>
+
+      <h3>Stop your bike manufacturer's app</h3>
+      <p>KlustrKast and your bike manufacturer's own app (the OEM app) can't both control the cluster at the same time. They share one Bluetooth link to the bike, and the manufacturer's app reconnects by itself in the background. With both running, the cluster gets conflicting instructions and KlustrKast may not connect or stay connected.</p>
+      <p>Before you ride with KlustrKast, do one of these:</p>
+      <ul>
+        <li><b>Force stop it.</b> Long-press the manufacturer's app icon, tap <span class="ui">App info</span>, then <span class="ui">Force stop</span>. It starts itself again when you open it or restart your phone, so repeat this when that happens.</li>
+        <li><b>Uninstall it</b> if you don't use it. You can install it again later.</li>
+      </ul>
     </section>
 
     <section id="connect">
@@ -461,6 +469,7 @@ footer a{color:var(--muted)}
             <li>On Android 13 or newer, check <b>Nearby Wi‑Fi</b> is allowed (Settings → Permissions).</li>
             <li>If Android asked to connect to the bike's Wi‑Fi and you declined, switch streaming off and on, and accept it.</li>
             <li>Turn the ignition off, wait a few seconds, turn it on, and switch streaming on again.</li>
+            <li>Force stop your bike manufacturer's app, or uninstall it. It competes with KlustrKast for the cluster (see <a href="#setup">First-time setup</a>).</li>
             <li>New or different bike? Use Settings → My motorcycle → <b>Forget this motorcycle</b>.</li>
           </ol>
           The app keeps trying for 5 minutes before it stops.
