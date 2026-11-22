@@ -20,7 +20,7 @@
 @font-face{font-family:"KKDot";src:url("dotmatrix.ttf") format("truetype");font-display:swap}
 /* Layout: calm single-column landing; full-width bands, centered 1080px content wrap, red accent on CTAs only. */
 :root{
-  --bg:#f3f4f6; --surface:#ffffff; --surface-2:#e9ebee; --hero:#14171b;
+  --beta:#a35f00; --bg:#f3f4f6; --surface:#ffffff; --surface-2:#e9ebee; --hero:#14171b;
   --fg:#191c20; --muted:#646a71; --faint:#9298a0; --border:#e3e6e9;
   --accent:#dd3b2e; --accent-ink:#ffffff; --on-hero:#eef0f2; --on-hero-muted:#9aa2ab;
   --radius:16px;
@@ -29,13 +29,13 @@
   --ease:cubic-bezier(.2,.7,.2,1);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
+  --beta:#f0a830; --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
   --fg:#eceef1; --muted:#a3a9b0; --faint:#6d737a; --border:#262b31;
   --accent:#f0564a; --accent-ink:#ffffff; --on-hero:#eef0f2; --on-hero-muted:#9aa2ab;
   color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
+  --beta:#f0a830; --bg:#0e1013; --surface:#15181c; --surface-2:#1b1f24; --hero:#0a0c0e;
   --fg:#eceef1; --muted:#a3a9b0; --faint:#6d737a; --border:#262b31;
   --accent:#f0564a; --accent-ink:#ffffff; --on-hero:#eef0f2; --on-hero-muted:#9aa2ab;
   color-scheme:dark;
@@ -106,6 +106,7 @@ a{color:inherit}
 .bike .tag{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
 .bike.ok .tag{color:#1f9d57}
 .bike.soon .tag{color:var(--faint)}
+.bike.beta .tag{color:var(--beta)}
 .bike h3{font-size:18px;margin-top:8px}
 .bike .yrs{display:inline-block;margin-top:6px;font-size:12px;font-weight:600;color:var(--muted);background:var(--surface-2);border-radius:999px;padding:.2em .7em}
 .bike p{font-size:14px;color:var(--muted);margin:6px 0 0}
@@ -297,19 +298,21 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <div class="yrs">Oct 2025 onwards</div>
         <p>Every feature works: map mirroring, map navigation, music, calls and ride tracking.</p>
       </div>
-      <div class="bike ok">
-        <div class="tag">Supported</div>
+      <div class="bike beta">
+        <div class="tag">Beta</div>
         <h3>TVS Apache RTR 160 4V — Top</h3>
         <div class="yrs">Sept 2026 onwards</div>
         <p class="req">For models with map mirroring over Wi‑Fi (the TFT cluster).</p>
         <p>Map mirroring, map navigation, calls and ride tracking. This cluster has no music screen, so the song shows on the map instead, and calls are answered with the Info switch.</p>
+        <p>New and still being tested on this bike. If something doesn't work, tell us in the form.</p>
       </div>
-      <div class="bike ok">
-        <div class="tag">Supported</div>
+      <div class="bike beta">
+        <div class="tag">Beta</div>
         <h3>TVS Apache RTR 200 4V — Top</h3>
         <div class="yrs">Sept 2026 onwards</div>
         <p class="req">For models with map mirroring over Wi‑Fi (the TFT cluster).</p>
         <p>Map mirroring, map navigation, calls and ride tracking. This cluster has no music screen, so the song shows on the map instead, and calls are answered with the Info switch.</p>
+        <p>New and still being tested on this bike. If something doesn't work, tell us in the form.</p>
       </div>
     </div>
   </div>
@@ -399,7 +402,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <div class="faq">
       <details><summary>Will it void vehicle warranty?</summary><p>No. The app doesn't make any permanent changes. All changes are stateless. For the vehicle it is same as being connected to its own app.</p></details>
       <details><summary>Are there ads?</summary><p>KlustrKast is ad‑free — no ads, no tracking, ever. A small contribution covers upkeep (deployment, servers, development) and keeps it that way. The whole point is a seamless ride.</p></details>
-      <details><summary>Which bikes does it work with?</summary><p>Today, the TVS Apache RTX 300 Top / BTO (Oct 2025 onwards), the TVS Apache RTR 160 4V Top (Sept 2026 onwards) and the TVS Apache RTR 200 4V Top (Sept 2026 onwards). For the RTR 160 and RTR 200, it's the models with map mirroring over Wi‑Fi (the TFT cluster); the TFT models without map mirroring aren't supported. The RTR clusters have no music screen or joystick, so music shows on the map and calls are answered with the Info switch. The <a href="manual#rtr">User Manual</a> lists the differences. It's built on a shared cluster protocol, so more models can be added — tell us what you ride in the form.</p></details>
+      <details><summary>Which bikes does it work with?</summary><p>Today, the TVS Apache RTX 300 Top / BTO (Oct 2025 onwards), the TVS Apache RTR 160 4V Top (Sept 2026 onwards) and the TVS Apache RTR 200 4V Top (Sept 2026 onwards). For the RTR 160 and RTR 200, it's the models with map mirroring over Wi‑Fi (the TFT cluster); the TFT models without map mirroring aren't supported. The RTR clusters have no music screen or joystick, so music shows on the map and calls are answered with the Info switch. RTR support is in beta while we test it on these bikes. The <a href="manual#rtr">User Manual</a> lists the differences. It's built on a shared cluster protocol, so more models can be added — tell us what you ride in the form.</p></details>
       <details><summary>Do I need any API keys?</summary><p>For the best maps and routing, add your own MapTiler and TomTom keys in Settings — both offer free tiers. The app still works without them using open fallbacks; the keys just make maps and ETAs sharper.</p></details>
       <details><summary>Is there a user manual?</summary><p>Yes — the <a href="manual">KlustrKast User Manual</a> covers setup, connecting to your cluster, navigation, rides, music and calls, widgets and troubleshooting.</p></details>
       <details><summary>Can I use it alongside my bike manufacturer’s app?</summary><p>Not at the same time. Both apps try to control the cluster over the same Bluetooth link, so they send it conflicting instructions. Before you ride with KlustrKast, force stop the manufacturer’s app (long‑press its icon → App info → Force stop), or uninstall it if you don’t use it. Manufacturer apps may also run as a background service around the clock, which can drain your phone’s battery even on days you don’t ride. KlustrKast intentionally leaves that out: it runs only when you switch streaming on or start navigation, so you stay in control. The <a href="manual#setup">User Manual</a> has the steps.</p></details>
