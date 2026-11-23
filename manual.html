@@ -119,6 +119,8 @@ td:first-child{font-weight:600;white-space:nowrap}
 .figs{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
 figure{margin:0;width:min(100%,210px);background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 figure img{display:block;width:100%;height:auto;aspect-ratio:540/1140;object-fit:cover;object-position:top;background:var(--surface-2)}
+.figs.steps-shots figure{width:min(100%,300px)}
+.figs.steps-shots figure img{aspect-ratio:auto;object-fit:contain}
 figcaption{font-size:12.5px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--border)}
 
 .faq{margin-top:14px;border-top:1px solid var(--border)}
@@ -200,6 +202,7 @@ footer a{color:var(--muted)}
       <li><a href="#need">What you need</a></li>
       <li><a href="#install">Install &amp; sign in</a></li>
       <li><a href="#setup">First-time setup</a></li>
+      <li><a href="#maptiler">Detailed maps (MapTiler)</a></li>
       <li><a href="#connect">Connect to your bike</a></li>
       <li><a href="#navigate">Navigate</a></li>
       <li><a href="#cluster">Your cluster screen</a></li>
@@ -221,6 +224,7 @@ footer a{color:var(--muted)}
         <li><a href="#need">What you need</a></li>
         <li><a href="#install">Install &amp; sign in</a></li>
         <li><a href="#setup">First-time setup</a></li>
+        <li><a href="#maptiler">Detailed maps (MapTiler)</a></li>
         <li><a href="#connect">Connect to your bike</a></li>
         <li><a href="#navigate">Navigate</a></li>
         <li><a href="#cluster">Your cluster screen</a></li>
@@ -296,8 +300,33 @@ footer a{color:var(--muted)}
       <p class="lead-in">There's a second reason. Manufacturer apps may run as a background service around the clock: they start with your phone and keep looking for the bike, which can drain your battery even on days you don't ride. KlustrKast intentionally leaves that out. It runs only when you switch on <span class="dot">Cluster streaming</span> or start navigation, and it stops by itself a few minutes after the bike is switched off, so you stay in control.</p>
     </section>
 
+    <section id="maptiler">
+      <h2><span class="n">04</span>Detailed maps (MapTiler)</h2>
+      <p>KlustrKast works straight away with free basic maps. For more detailed maps, with more streets, places and every map style, add your own <b>MapTiler key</b>. It's free, takes about two minutes, and you only do it once.</p>
+      <ol class="steps">
+        <li>In KlustrKast, open <span class="ui">Settings</span>, scroll to <span class="ui">API keys</span> and tap <span class="ui">MapTiler key</span>.</li>
+        <li>Tap <span class="ui">Get a key</span>. MapTiler's website opens in your browser.</li>
+        <li>Tap <span class="ui">Sign in with Google</span> and choose your Google account. The first time, this creates your free MapTiler account. No payment is needed.</li>
+        <li>You land on MapTiler's <span class="ui">API keys</span> page. Press and hold the key (the long code under <span class="ui">Key</span>) and choose <span class="ui">Copy link text</span>. If no key is listed, tap <span class="ui">New key</span>, name it <i>KlustrKast</i>, save it, then copy it.</li>
+        <li>Go back to KlustrKast, paste the key into the <span class="ui">MapTiler key</span> box and tap <span class="ui">Save</span>. The card now says <i>Using your key — detailed MapTiler maps are on.</i></li>
+        <li>Close and reopen the map (or switch streaming off and on) to load the new maps. Pick the look you like under <span class="ui">Settings → Map style</span>.</li>
+      </ol>
+      <div class="figs steps-shots">
+        <figure><img src="screenshots/maptiler-1-settings.png?v=20261123b" alt="KlustrKast Settings with the MapTiler key row under API keys highlighted" loading="lazy"><figcaption>1. Settings → API keys → MapTiler key</figcaption></figure>
+        <figure><img src="screenshots/maptiler-1b-getkey.png?v=20261123b" alt="MapTiler key card with the Get a key button highlighted" loading="lazy"><figcaption>2. Tap Get a key</figcaption></figure>
+        <figure><img src="screenshots/maptiler-2-signin.png?v=20261123b" alt="MapTiler sign-in page with Sign in with Google highlighted" loading="lazy"><figcaption>3. Sign in with Google</figcaption></figure>
+        <figure><img src="screenshots/maptiler-3-key.png?v=20261123c" alt="MapTiler API keys page with the key highlighted; the key itself is hidden" loading="lazy"><figcaption>4. Copy your key (hidden here)</figcaption></figure>
+        <figure><img src="screenshots/maptiler-4-paste.png?v=20261123b" alt="MapTiler key card with the key box and Save button highlighted" loading="lazy"><figcaption>5. Paste and tap Save</figcaption></figure>
+      </div>
+      <div class="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        <div><b>Keep your key to yourself.</b> It's tied to your MapTiler account, and anyone who has it uses up your free allowance. KlustrKast keeps it on your phone only and hides it on screen; the eye icon shows it. Don't post screenshots with the key visible.</div>
+      </div>
+      <p class="lead-in">To go back to the free basic maps, clear the box and tap <span class="ui">Save</span>.</p>
+    </section>
+
     <section id="connect">
-      <h2><span class="n">04</span>Connect to your bike</h2>
+      <h2><span class="n">05</span>Connect to your bike</h2>
       <ol class="steps">
         <li>Turn the bike's ignition on. Make sure <b>Bluetooth and Wi‑Fi</b> are on in your phone.</li>
         <li>On the <span class="dot">Map</span> tab, switch on <span class="dot">Cluster streaming</span> at the top.</li>
@@ -317,7 +346,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="navigate">
-      <h2><span class="n">05</span>Navigate</h2>
+      <h2><span class="n">06</span>Navigate</h2>
       <h3>Choose a destination</h3>
       <ul>
         <li><b>Search:</b> type at least 3 letters in <span class="ui">Where to?</span> and pick a result. Recent places appear when you tap the box.</li>
@@ -357,7 +386,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="cluster">
-      <h2><span class="n">06</span>Your cluster screen</h2>
+      <h2><span class="n">07</span>Your cluster screen</h2>
       <p>These are under <span class="ui">Settings → Cluster</span>.</p>
       <div class="tbl"><table>
         <tr><th>Setting</th><th>What it does</th></tr>
@@ -379,7 +408,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="fuel">
-      <h2><span class="n">07</span>Fuel stops</h2>
+      <h2><span class="n">08</span>Fuel stops</h2>
       <ul>
         <li><b>Any time:</b> tap the fuel-pump button on the map to show petrol pumps on the phone and the cluster. Tap again to hide them. With a route active, it shows pumps ahead on your route.</li>
         <li><b>Automatically when low:</b> when the bike's fuel drops to the level you set, pump markers appear on the cluster by themselves.</li>
@@ -391,7 +420,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="media">
-      <h2><span class="n">08</span>Music &amp; calls</h2>
+      <h2><span class="n">09</span>Music &amp; calls</h2>
       <h3>Music</h3>
       <ul>
         <li>Use the handlebar music buttons to play, pause and skip tracks. They work with your screen off. (An <a href="#rtr">RTR 4V</a> has no music buttons or music screen: the song always shows on the map bar.)</li>
@@ -407,7 +436,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="rides">
-      <h2><span class="n">09</span>Rides</h2>
+      <h2><span class="n">10</span>Rides</h2>
       <p>Rides record automatically whenever you're navigating or streaming to the cluster. There's nothing to start or stop: the ride is saved when your session ends. Very short trips (under about 500 m) aren't kept.</p>
       <h3>Look back at a ride</h3>
       <p>Open the <span class="dot">Rides</span> tab and tap a ride to see its route, distance, duration, speeds and elevation. With the cluster connected you also get odometer, fuel used, economy and RPM, plus charts you can tap to enlarge.</p>
@@ -439,7 +468,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="widgets">
-      <h2><span class="n">10</span>Widgets &amp; shortcuts</h2>
+      <h2><span class="n">11</span>Widgets &amp; shortcuts</h2>
       <p>Add these from your phone's home screen: long-press an empty area, choose <span class="ui">Widgets</span>, and find KlustrKast.</p>
       <div class="tbl"><table>
         <tr><th>Widget</th><th>What it does</th></tr>
@@ -450,21 +479,21 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="settings">
-      <h2><span class="n">11</span>Other settings</h2>
+      <h2><span class="n">12</span>Other settings</h2>
       <div class="tbl"><table>
         <tr><th>Setting</th><th>What it does</th></tr>
         <tr><td>Map style</td><td>The look of the map on phone and cluster (Streets, Outdoor, Satellite and more). Reopen the map or restart streaming to apply. Satellite styles use more data.</td></tr>
         <tr><td>Route guidance</td><td><b>Normal</b> is quicker to plan and includes lane guidance. <b>2W</b> avoids roads motorcycles aren't allowed on, such as some expressways. Switch to 2W only if Normal sends you down a road you can't ride. You can also switch for a single trip on the route preview.</td></tr>
         <tr><td>Location source</td><td>Leave on <b>Fused + GPS (recommended)</b>. Try GPS only if the map jumps; try Fused + GPS + Network only if GPS won't lock on your phone.</td></tr>
         <tr><td>Map cache</td><td>Areas you ride through are stored (up to 400 MB) so they load without signal. <i>Clear map cache</i> frees the space.</td></tr>
-        <tr><td>API keys</td><td>Optional. Your own free MapTiler key gives more detailed maps; a TomTom key gives TomTom routing, live traffic and richer search. Paste them here; they stay on your phone. The app works without them.</td></tr>
+        <tr><td>API keys</td><td>Optional. Your own free MapTiler key gives more detailed maps (<a href="#maptiler">how to get one</a>); a TomTom key gives TomTom routing, live traffic and richer search. Paste them here; they stay on your phone. The app works without them.</td></tr>
         <tr><td>Live traffic</td><td>Needs a TomTom key. Traffic jams on your route are drawn in amber, and heavy jams or closed roads in red. Ordinary slow traffic isn't coloured, but it is counted in your arrival time, which is updated every 20 minutes while you navigate. Your route and turn instructions don't change. Turn <i>Show traffic</i> off to plan the route once and keep it as it is.</td></tr>
         <tr><td>Account</td><td>Shows who's signed in and the app version. <i>Logout</i> signs you out.</td></tr>
       </table></div>
     </section>
 
     <section id="trouble">
-      <h2><span class="n">12</span>Troubleshooting</h2>
+      <h2><span class="n">13</span>Troubleshooting</h2>
       <div class="faq">
         <details><summary>The cluster won't connect</summary><div>
           <ol>
@@ -482,6 +511,14 @@ footer a{color:var(--muted)}
         </div></details>
         <details><summary>The cluster shows my wallpaper, not the map</summary><div>
           That's expected when you aren't navigating. Start a route in KlustrKast and the map appears.
+        </div></details>
+        <details><summary>The map is blank and only my route shows</summary><div>
+          <ol>
+            <li>Open <span class="ui">Settings → API keys → MapTiler key</span>. Tap the eye icon and check the key matches the one on MapTiler's <span class="ui">API keys</span> page, with no spaces before or after it. Paste it again and tap <span class="ui">Save</span>.</li>
+            <li>Close and reopen the map.</li>
+            <li>If you added limits to the key on MapTiler (allowed websites or User-Agent), remove them. They can block the app.</li>
+            <li>Still blank? Clear the key and tap <span class="ui">Save</span> to use the free basic maps, then <a href="#trouble">tell us</a>.</li>
+          </ol>
         </div></details>
         <details><summary>The map jumps, or my position lags</summary><div>
           Update to the latest version first. Keep Location source on <b>Fused + GPS</b>, and check the phone isn't in a power-saving mode. If it still happens, send us a ride export (below).
@@ -508,7 +545,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="know">
-      <h2><span class="n">13</span>Good to know</h2>
+      <h2><span class="n">14</span>Good to know</h2>
       <ul>
         <li>The app keeps your latest 100 rides. Older ones are removed automatically, so export if you want to keep everything.</li>
         <li>Pressing Back on the Map tab only hides the app. Streaming and navigation keep running.</li>
@@ -519,7 +556,7 @@ footer a{color:var(--muted)}
     </section>
 
     <section id="rtr">
-      <h2><span class="n">14</span>RTR 4V riders</h2>
+      <h2><span class="n">15</span>RTR 4V riders</h2>
       <p>KlustrKast supports the <b>TVS Apache RTR 160 4V Top</b> and <b>RTR 200 4V Top</b> with the TFT cluster that has <b>map mirroring over Wi‑Fi</b>. The TFT models without map mirroring (Bluetooth only) aren't supported. Everything in this manual applies, with the differences below.</p>
       <p><b>RTR support is in beta.</b> It's built from how the TVS app talks to these clusters and is still being tested on the bikes. If something doesn't work the way this section describes, send us a DM on Instagram (<a href="https://www.instagram.com/geargyani/" target="_blank" rel="noopener">@geargyani</a>).</p>
       <h3>Set up</h3>
